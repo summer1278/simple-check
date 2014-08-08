@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 $: << 'lib'
+
 require 'optparse'
 require 'checker'
 
@@ -9,11 +10,11 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: smd-import-audio [options]"
 
-  opts.on("-s", "--source-dir [DIR]", "Source directory") do |i|
-    options[:source_directory] = i
+  opts.on("-s", "--source-dir [DIR]", "Source directory") do |s|
+    options[:source_directory] = s
   end
 
-  opts.on("-t", "--translation-dir [DIR]", "Translation directory") do |o|
+  opts.on("-t", "--translation-dir [DIR]", "Translation directory") do |t|
     options[:translation_directory] = t
   end
 
@@ -26,3 +27,6 @@ OptionParser.new do |opts|
     exit
   end
 end.parse!
+
+check = Checker::SimpleCollecter.new options[:source_directory],options[:translation_directory], options[:output_directory]
+check.collect
