@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+$: << 'lib'
+require 'optparse'
+require 'checker'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: smd-import-audio [options]"
+
+  opts.on("-s", "--source-dir [DIR]", "Source directory") do |i|
+    options[:source_directory] = i
+  end
+
+  opts.on("-t", "--translation-dir [DIR]", "Translation directory") do |o|
+    options[:translation_directory] = t
+  end
+
+  opts.on("-o", "--output-dir [DIR]", "Output directory") do |o|
+    options[:output_directory] = o
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end.parse!

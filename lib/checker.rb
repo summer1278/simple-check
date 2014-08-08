@@ -1,0 +1,1 @@
+require 'checker/simple_collecter'
