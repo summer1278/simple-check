@@ -33,22 +33,29 @@ module Checker
       lines = file.readlines
 
       if lines != nil
-        lines.each_with_index do |line, index|
-          if index % 2 == 0
-            data[0] = remove_symbols(line)
-              #p data[0]
-            else
-             data[1] = remove_symbols(line)
-              #p data
-              sentences << [data[0],data[1],data[2]]
+        if !lines.any? { |s| s.include?("\n") }
+          lines.each do |line|
+            data[0] = 'Option'
+            data[1] = remove_symbols(line)
+            sentences << [data[0],data[1],data[2]]
+          end
+        else
+          lines.each_with_index do |line, index|
+            if index % 2 == 0
+              data[0] = remove_symbols(line)
+                #p data[0]
+              else
+                data[1] = remove_symbols(line)
+                #p data
+                sentences << [data[0],data[1],data[2]]
+              end
             end
-            #sentences << data
           end
         end
         
       end
       return sentences
-     #CSV.open('test/data.csv', 'w') do |csv_file|
+    #CSV.open('test/data.csv', 'w') do |csv_file|
     #  sentences.each {|row| csv_file<<row}
     #end
 
