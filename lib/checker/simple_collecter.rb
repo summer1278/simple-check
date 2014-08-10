@@ -1,5 +1,5 @@
 require 'csv'
-require 'pp'
+#require 'pp'
 # coding:utf-8
 module Checker
 
@@ -17,7 +17,7 @@ module Checker
   def group_source_and_translation
    src = collect_dir(@source_dir)
    trs = collect_dir(@translation_dir)
-   CSV.open('test/data.csv', 'w') do |csv_file|
+   CSV.open(@result_dir+'/data.csv', 'w') do |csv_file|
     src.each_with_index {|row,i| csv_file<<row.insert(2,trs[i][1])}
    end
  end
