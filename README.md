@@ -9,6 +9,14 @@ Require UTF-8 txt files as input!
 
 Tested on Windows 7 64-bit English(UK)
 
+*03/02/15 
+
+update on functions in translations to:
+
+check japnese characters left(JPN) //
+lines(CHECK1) //
+characters for each line(CHECK2)
+
 
 Attentions in Chinese!
 ============
@@ -27,7 +35,7 @@ Attentions in Chinese!
 ================================================
 
 生成的data.csv文件
-人物 | 原文 | 译文 | 出处
+人物 | 原文 | 译文 with checksum | 出处
 
 ================================================
 
@@ -45,3 +53,8 @@ Attentions in Chinese!
 编程语言为Ruby，完全开源~现学现卖！
 
 10/08/14
+================================================
+
+更新有关校对中确认翻译中的日文假名（JPN），行数（CHECK1），字符数（CHECK2）的功能。
+
+03/02/15
