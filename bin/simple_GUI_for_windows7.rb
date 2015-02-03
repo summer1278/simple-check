@@ -164,18 +164,18 @@ else
                 #p data[0]
               else
                 data[1] = remove_symbols(line)
-				# if it is translation, check
-				if (other == 1)
-          if not_chn(data[1])
-            data[1] = data[1]+'JPN'
-          end
-          if sentences_check(data[1])
-            data[1] = data[1]+'CHECK1'
-          end
-          if chars_check(data[1].gsub("JPN",""))
-            data[1] = data[1]+'CHECK2'
-          end
-        end
+				        # if it is translation, check
+				        if (other == 1)
+                  if not_chn(data[1])
+                  data[1] = data[1]+'JPN'
+                  end
+                  if sentences_check(data[1])
+                    data[1] = data[1]+'CHECK1'
+                  end
+                  if chars_check(data[1].gsub("JPN",""))
+                    data[1] = data[1]+'CHECK2'
+                  end
+               end
         sentences << [data[0],data[1],data[2]]
       end
     end
