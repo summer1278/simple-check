@@ -1,6 +1,6 @@
 #$: << "lib"
 require "tk"
-# coding:utf-8
+# encoding: UTF-8
 
 #module Checker
 class SimpleGUI
@@ -130,8 +130,8 @@ else
     end
 
     def group_source_and_translation
-     src = collect_dir(@source_dir)
-     trs = collect_dir(@translation_dir)
+     src = collect_dir(@source_dir,0)
+     trs = collect_dir(@translation_dir,1)
      CSV.open(@result_dir+"/data.csv", "w:utf-8") do |csv_file|
        head = "\xEF\xBB\xBF".force_encoding("utf-8")
        csv_file << [head,nil,nil,nil]
@@ -140,7 +140,7 @@ else
 
    end
 
-   def collect_dir (source)
+   def collect_dir (source,other)
 
     sentences = [] 
     data = Array.new(3,nil)
@@ -164,6 +164,18 @@ else
                 #p data[0]
               else
                 data[1] = remove_symbols(line)
+				# if it is translation, check
+				if (other == 1)
+				  if not_chn(data[1])
+				    data[1] = data[1]+'JPN'
+				  end
+				  if sentences_check(data[1])
+				    data[1] = data[1]+'CHECK1'
+				  end
+				  if chars_check(data[1].gsub("JPN",""))
+				    data[1] = data[1]+'CHECK2'
+				  end
+				end
                 sentences << [data[0],data[1],data[2]]
               end
             end
@@ -181,7 +193,24 @@ else
   def remove_symbols(string)
     string.gsub("\r\n","").gsub("\\n","\n").strip
   end
-
+  
+  # search for jpn characters
+  def not_chn(source)
+  	utf_source = source.encode('UTF-8')
+    !utf_source.scan(/\p{Katakana}|\p{Hiragana}/u).empty?
+  end
+  
+  # less than 3 lines
+  def sentences_check(source)
+    source.lines.count > 3
+  end
+  
+  # each line less than 22 characters
+  def chars_check(source)
+    chars_count = []
+    source.lines.each {|line| chars_count << line.gsub("\n","").size}
+	!chars_count.select{|count| count>22}.empty?
+  end
 
 end
 end
