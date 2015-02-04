@@ -13,9 +13,11 @@ Tested on Windows 7 64-bit English(UK)
 
 update on functions in translations to:
 
-check japnese characters left(JPN) //
-lines(CHECK1) //
-characters for each line(CHECK2)
+* check japnese characters left(JPN) 
+* lines(CHECK1) 
+* characters for each line(CHECK2)
+
+![screenshot](http://i.imgur.com/T6LsPZJ.jpg "Screenshot")
 
 
 Attentions in Chinese!
